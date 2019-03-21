@@ -1,7 +1,7 @@
 # Build An Alexa Skill with Amazon Pay - Demo Store
-Do you currently sell goods or services on other channels but want to expand to Alexa to reach new and existing customers? Good news, with [Amazon Pay](https://developer.amazon.com/alexa-skills-kit/make-money/amazon-pay), you can offer a seamless voice purchasing experience to your customers, allowing them to purchase real-world goods and services via Alexa - without having to leave the voice experience.
+Do you currently sell goods or services on other channels but want to expand to Alexa to reach new and existing customers? Good news, with [Amazon Pay](https://developer.amazon.com/alexa-skills-kit/make-money/amazon-pay), you can offer a seamless voice purchasing experience to your customers, allowing them to purchase real-world goods and services with Alexa - without having to leave the voice experience.
 
-This custom skill is a demo store that showcases how to use Amazon Pay with your shopping experiences on Alexa.
+This custom skill is a demo store that showcases how to use Amazon Pay with your shopping experiences with Alexa.
 
 ## What You Will Need
 Before you start working on this skill, you will need to create the following accounts:
