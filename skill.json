@@ -1,0 +1,60 @@
+{
+  "manifest": {
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "uri": "no-nicks",
+          "sourceDir": "lambda/custom"
+        },
+        "interfaces": []
+      }
+    },
+    "manifestVersion": "1.0",
+    "permissions": [
+      {
+        "name": "payments:autopay_consent"
+      }
+    ],
+    "privacyAndCompliance": {
+      "locales": {
+        "en-US": {
+          "privacyPolicyUrl": "https://example.com",
+          "termsOfUseUrl": "https://example.com"
+        }
+      },
+      "allowsPurchases": true,
+      "usesPersonalInfo": true,
+      "isChildDirected": false,
+      "isExportCompliant": true,
+      "containsAds": false
+    },
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "name": "No Nicks",
+          "smallIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/23bf/c2e52e552ee44a6099b06ac30bc713b4/APP_ICON?versionId=d6YX5pM5JDYLgTcFRTicg7KvFj8rAPBY&AWSAccessKeyId=AKIAJFEYRBGIHK2BBYKA&Expires=1551319004&Signature=gawNKWveGqtpMO7KdLZ4e0RTAwc%3D",
+          "largeIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/96f3/c5c84a64a51e498fa462c50974141ca3/APP_ICON_LARGE?versionId=E0Kk1TGSsweWB3o_QcxQ7At0kdNoCy6x&AWSAccessKeyId=AKIAJFEYRBGIHK2BBYKA&Expires=1551319004&Signature=y4qt8ujQmdDeH%2FAWqAHhfLYQln8%3D",
+          "summary": "This is a demo store that showcases how to use Amazon Pay with your shopping experiences on Alexa.",
+          "description": "This is a demo store that showcases how to use Amazon Pay with your shopping experiences on Alexa. This demo is using \"Sandbox Mode\" which uses fictional credit cards and will not charge your account. Download the code here: https://github.com/alexa/skill-sample-nodejs-demo-store-amazon-pay. Learn more about developing skills with Amazon Pay here: https://developer.amazon.com/docs/amazon-pay/amazon-pay-overview.html",
+          "examplePhrases": [
+            "Alexa, open No Nicks",
+            "Alexa, ask No Nicks for a starter kit",
+            "Alexa, ask No Nicks for refills"
+          ],
+          "keywords": [
+            "no",
+            "nicks",
+            "shaving",
+            "kit"
+          ],
+          "updatesDescription": ""
+        }
+      },
+      "isAvailableWorldwide": true,
+      "distributionMode": "PUBLIC",
+      "testingInstructions": "",
+      "category": "SHOPPING",
+      "distributionCountries": []
+    }
+  }
+}

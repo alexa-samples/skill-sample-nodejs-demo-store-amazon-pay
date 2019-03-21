@@ -1,0 +1,12 @@
+{
+  "name": "skill-sample-nodejs-amazon-pay",
+  "version": "1.0.0",
+  "description": "This demo showcases how to integrate Amazon Pay into a shopping experience.",
+  "author": "Tony Cordova",
+  "license": "ISC",
+  "dependencies": {
+    "ask-sdk": "^2.4.0",
+    "ask-sdk-core": "^2.4.0",
+    "ask-sdk-s3-persistence-adapter": "^2.4.0"
+  }
+}
