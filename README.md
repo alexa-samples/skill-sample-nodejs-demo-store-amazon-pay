@@ -7,7 +7,7 @@ This custom skill is a demo store that showcases how to use Amazon Pay with your
 Before you start working on this skill, you will need to create the following accounts:
 *  [Amazon Developer Account](http://developer.amazon.com/alexa)
 *  [Amazon Web Services Account](http://aws.amazon.com/)
-*  [Amazon Pay Merchant Account](https://pay.amazon.com/us)
+*  [Amazon Pay Merchant Account](https://pay.amazon.com/signup)
 *  [Amazon Pay Sandbox Test Account](https://www.youtube.com/watch?v=m5teEFRZB8A)
 
 ## Setting Up the Demo
