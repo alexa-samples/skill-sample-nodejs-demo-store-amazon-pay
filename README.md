@@ -11,7 +11,7 @@ Before you start working on this skill, you will need to create the following ac
 *  [Amazon Pay Sandbox Test Account](https://www.youtube.com/watch?v=m5teEFRZB8A)
 
 ## Setting Up the Demo
-This repository contains the interaction model and skill code. It is structured to make it easy to deploy if you have the [ASK CLI](https://developer.amazon.com/docs/smapi/quick-start-alexa-skills-kit-command-line-interface.html) already setup. If you would like to use the Alexa Developer Console, you can follow the steps outlined in the [Hello World](https://github.com/alexa/skill-sample-nodejs-hello-world) example, substituting the [Model](./models/en-US.json) and the [skill code](./lambda/custom/index.js) when called for. In addition, you will need to configure the additional supporting javascript files found in the custom folder.
+This repository contains the interaction model and skill code. It is structured to make it easy to deploy if you have the [ASK CLI](https://developer.amazon.com/docs/smapi/quick-start-alexa-skills-kit-command-line-interface.html) setup. If you would like to use the Alexa Developer Console, you can follow the steps outlined in the [Hello World](https://github.com/alexa/skill-sample-nodejs-hello-world) example, substituting the [Model](./models/en-US.json) and the [skill code](./lambda/custom/index.js) when called for. In addition, you will need to configure the additional supporting javascript files found in the custom folder.
 
 1. Clone repository and navigate the demo's root folder ( lambda/custom ).
 1. Open [config.js](./lambda/custom/config.js) and update values `bucketName`, `sellerId`, and `sandboxCustomerEmailId`
@@ -25,20 +25,18 @@ This repository contains the interaction model and skill code. It is structured 
 Launch the demo by saying, 'Alexa, open No Nicks'. If you receive an error, proceed to the [troubleshooting section](#troubleshooting).
 
 ## Troubleshooting
+If you encounter issues with your skill, confirm the following:
 
-If you are encountering issues with your skill, double check that you have completed the following:
+1.	Your Seller Central account is in good standing by selecting the Production environment and verify there are no errors with your account.
+2.	The correct skill Id is linked in Seller Central for both the Sandbox and Production environments. In Seller Central, navigate to [Integration > Alexa](https://sellercentral.amazon.com/external-payments/integration/alexa/).
+3.	Your Amazon Pay sandbox test account is created in Seller Central. Instructions [here](https://www.youtube.com/watch?v=m5teEFRZB8A).
+4.	Amazon Pay permissions are enabled for your skill in the Alexa Developer Console. In the Alexa Developer Console, navigate to your skill then Build > Permissions > Amazon Pay.
+5.	[config.js](./lambda/custom/config.js) contains the correct values for `bucketName`, `sellerId`, and `sandboxCustomerEmailId`.
+6.	Your skill is enabled in your Alexa App.
+7.	Consent and permissions to Amazon Pay for your skill is enabled in your Alexa App.
+8.	Voice Purchasing is enabled in your Alexa App.
 
-1. Confirm that your Seller Central account is in good standing by selecting the Production environment and verify there are no errors on your account.
-1. Check the correct skill was linked in Sandbox using in Seller Central.
-1. Verify your sandbox test user was created in Seller Central.
-1. Verify Amazon Pay permissions are enabled for your skill under Build > Permissions > Amazon Pay.
-1. Verify the config.js contains the appropriate values for `bucketName`, `sellerId`, and `sandboxCustomerEmailId`.
-1. Verify the correct skill Id is used in your Lambda function.
-1. Enable your skill in your Alexa App
-1. Consent and give permissions to Amazon Pay in your Alexa App
-1. Enable Voice Purchasing in your Alexa App ( with or without the voice code ).
-
-All other errors and decline handling can be found here: https://developer.amazon.com/docs/amazon-pay/payment-declines-and-processing-errors.html
+Processing errors and decline handling can be found here: https://developer.amazon.com/docs/amazon-pay/payment-declines-and-processing-errors.html
 
 ## Resources
 * [Amazon Pay Alexa Documentation](https://developer.amazon.com/docs/amazon-pay/amazon-pay-overview.html)
