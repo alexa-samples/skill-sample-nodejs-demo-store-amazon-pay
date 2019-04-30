@@ -2,7 +2,7 @@
     To run the skill, the minimum values you need configure are: sellerId, sandboxCustomerEmailId, and bucketName
 
     A detailed list of attribute descriptions can be found here:
-    https://developer.integ.amazon.com/docs/amazon-pay/amazon-pay-apis-for-alexa.html    
+    https://developer.amazon.com/docs/amazon-pay/amazon-pay-apis-for-alexa.html    
 **/
 
 'use strict';

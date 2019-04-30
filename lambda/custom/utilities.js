@@ -100,4 +100,3 @@ module.exports = {
 	'getSlotValues':            getSlotValues,
 	'resetSetup':               resetSetup,
 };
-

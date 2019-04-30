@@ -4,7 +4,7 @@ const config = require( 'config' );
 
 /**
 	A detailed list of all payment declines and processing errors can be found here:
-	https://developer.integ.amazon.com/docs/amazon-pay/payment-declines-and-processing-errors.html
+	https://developer.amazon.com/docs/amazon-pay/payment-declines-and-processing-errors.html
 **/
 
 
