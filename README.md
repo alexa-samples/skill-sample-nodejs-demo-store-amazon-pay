@@ -1,5 +1,5 @@
 # Build an Alexa Skill with Amazon Pay - Demo Store
-Do you currently sell goods or services on other channels but want to expand to Alexa to reach new and existing customers? Good news, with [Amazon Pay](https://developer.amazon.com/alexa-skills-kit/make-money/amazon-pay), you can offer a seamless voice purchasing experience to your customers, allowing them to purchase real-world goods and services via Alexa - without having to leave the voice experience.
+Do you currently sell real world goods or services on other channels but want to expand to Alexa to reach new and existing customers? Good news, with [Amazon Pay](https://developer.amazon.com/alexa-skills-kit/make-money/amazon-pay), you can offer a seamless voice purchasing experience to your customers, allowing them to purchase real-world goods and services via Alexa - without having to leave the voice experience.
 
 This custom skill is a demo store that showcases how to use Amazon Pay for your shopping experiences with Alexa.
 
@@ -27,7 +27,7 @@ Launch the demo by saying, 'Alexa, open No Nicks'. If you receive an error, proc
 ## Troubleshooting
 If you encounter issues with your skill, check the following:
 
-1.	Your Seller Central account is in good standing by selecting the Production environment and verify there are no errors with your account.
+1.	Your Amazon Pay account is in good standing. Navigate to [Seller Central](https://sellercentral.amazon.com) and select the Production environment to verify there are no errors with your Amazon Pay account.
 2.	The correct skill Id is linked in Seller Central for both the Sandbox and Production environments. In Seller Central, navigate to [Integration > Alexa](https://sellercentral.amazon.com/external-payments/integration/alexa/).
 3.	Your Amazon Pay sandbox test account is created in Seller Central. Instructions [here](https://www.youtube.com/watch?v=m5teEFRZB8A).
 4.	Amazon Pay permissions are enabled for your skill in the Alexa Developer Console. In the Alexa Developer Console, navigate to your skill then Build > Permissions > Amazon Pay.
