@@ -4,15 +4,7 @@
       "skill_id": "",
       "was_cloned": false,
       "merge": {
-        "manifest": {
-          "apis": {
-            "custom": {
-              "endpoint": {
-                "uri": "demo-store-amazon-pay"
-              }
-            }
-          }
-        }
+        "manifest": {}
       }
     }
   }

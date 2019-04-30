@@ -40,20 +40,6 @@
                     ]
                 },
                 {
-                    "name": "CheckoutIntent",
-                    "slots": [],
-                    "samples": [
-                        "place my order",
-                        "place order",
-                        "checkout",
-                        "i want to checkout",
-                        "buy",
-                        "buy now",
-                        "checkout please",
-                        "complete order"
-                    ]
-                },
-                {
                     "name": "OrderTrackerIntent",
                     "slots": [],
                     "samples": [
@@ -232,15 +218,6 @@
         },
         "prompts": [
             {
-                "id": "Elicit.Slot.639501222016.1000025700327",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "You can save ten percent today by signing up for refills. Every two months, you'll receive eight blades and a two ounce tube of shaving cream for eightteen dollars including shipping. Cancel or change delivery any time. Do you want to add this to your order?"
-                    }
-                ]
-            },
-            {
                 "id": "Elicit.Slot.295132847200.649643899751",
                 "variations": [
                     {
@@ -250,56 +227,11 @@
                 ]
             },
             {
-                "id": "Elicit.Slot.295132847200.45782372218",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "You can save ten percent today by signing up for refills. Every two months, you'll receive eight blades and a two ounce tube of shaving cream for eightteen dollars including shipping. Cancel or change delivery any time. Do you want to add this to your order?"
-                    }
-                ]
-            },
-            {
-                "id": "Elicit.Slot.122713613702.883585601394",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "You can save ten percent today by signing up for refills. Every two months, you'll receive eight blades and a two ounce tube of shaving cream for eighteen dollars including shipping. Cancel or change delivery any time. Do you want to add this to your order?"
-                    }
-                ]
-            },
-            {
-                "id": "Elicit.Slot.227603226437.555791052698",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "Every two months, you'll receive a refill of eight blades and a two ounce tube of shaving cream for twenty dollars including shipping. Cancel or change delivery any time. Do you want to order now?"
-                    }
-                ]
-            },
-            {
                 "id": "Elicit.Slot.477688339049.1345714957873",
                 "variations": [
                     {
                         "type": "PlainText",
                         "value": "Every two months, you'll receive a refill of eight blades and a two ounce tube of shaving cream for twenty dollars including tax and shipping. You can cancel or change delivery any time. Do you want to order it?"
-                    }
-                ]
-            },
-            {
-                "id": "Elicit.Slot.1405619153703.871120215545",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "You can save ten percent today by signing up for refills. Every two months, you'll receive eight blades and a two ounce tube of shaving cream for eighteen dollars including shipping. Cancel or change delivery any time. Do you want to add this to your order?"
-                    }
-                ]
-            },
-            {
-                "id": "Elicit.Slot.1432830506701.27798259708",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "You can save ten percent today by signing up for refills. Every two months, you'll receive eight blades and a two ounce tube of shaving cream for eighteen dollars including shipping. Cancel or change delivery any time. Do you want to add this to your order?"
                     }
                 ]
             },
