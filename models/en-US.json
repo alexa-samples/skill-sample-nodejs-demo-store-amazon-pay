@@ -304,38 +304,11 @@
                 ]
             },
             {
-                "id": "Elicit.Slot.871466476304.1051732784111",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "Do you want a dog?"
-                    }
-                ]
-            },
-            {
-                "id": "Elicit.Slot.871466476304.473894939028",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "Do you want a car?"
-                    }
-                ]
-            },
-            {
                 "id": "Elicit.Slot.81496166760.874607615560",
                 "variations": [
                     {
                         "type": "PlainText",
                         "value": "You can save ten percent today by signing up for refills. Every two months, you'll receive eight blades and a two ounce tube of shaving cream for eighteen dollars including tax and shipping. You can cancel or change delivery any time. Do you want to add this to your order?"
-                    }
-                ]
-            },
-            {
-                "id": "Elicit.Slot.350082470046.957699153803",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "dis dat upgrade doe"
                     }
                 ]
             }
