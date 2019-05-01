@@ -235,7 +235,7 @@ const SetupConnectionsResponseHandler = {
 
             const shippingAddress           = connectionResponsePayload.billingAgreementDetails.destination.addressLine1;
             let productType                 = attributes.productType;
-            let cartSummaryResponse         = generateResponse( 'summary', config.cartSummaryResponse, productType, shippingAddress );
+            let cartSummaryResponse         = generateResponse( 'summary', config.cartSummaryResponse, productType, shippingAddress, handlerInput );
             
             return handlerInput.responseBuilder
                                 .speak( cartSummaryResponse )
@@ -279,7 +279,7 @@ const ChargeConnectionsResponseHandler = {
             const { attributesManager }     = handlerInput;
             let attributes                  = attributesManager.getSessionAttributes( );             
             const productType               = attributes.productType;
-            let confirmationCardResponse    = generateResponse( 'confirmation', config.confirmationCardResponse, productType, null );
+            let confirmationCardResponse    = generateResponse( 'confirmation', config.confirmationCardResponse, productType, null, handlerInput );
 
             return handlerInput.responseBuilder
                                 .speak( config.confirmationIntentResponse )
@@ -522,8 +522,8 @@ function amazonPayCharge ( handlerInput ) {
     const authorizationReferenceId  = utilities.generateRandomString( 16 );
     const sellerOrderId             = utilities.generateRandomString( 6 );
     const locale                    = handlerInput.requestEnvelope.request.locale;
-    const token                     = utilities.generateRandomString( 12 );    
-    const amount                    = config.REGIONAL[locale].amount;
+    const token                     = utilities.generateRandomString( 12 ); 
+    const amount                    = attributes.productPrice;
     
     // Set the Charge payload and send the request directive
     const chargePayload             = payloadBuilder.chargePayload(billingAgreementId, authorizationReferenceId, sellerOrderId, amount, locale);
@@ -536,7 +536,7 @@ function amazonPayCharge ( handlerInput ) {
 }
 
 // Returns product specific string for summary or checkout intent responses
-function generateResponse ( stage, template, productType, shippingAddress ) {
+function generateResponse ( stage, template, productType, shippingAddress, handlerInput ) {
     let productPrice                = '';
     let subscriptionPrice           = '';
     let cartSummaryResponse         = template;
@@ -581,6 +581,13 @@ function generateResponse ( stage, template, productType, shippingAddress ) {
 
     confirmationCardResponse = confirmationCardResponse.replace( '{productType}' , confirmationItem ).replace( '{productPrice}' , productPrice );
 
+    // Save productPrice to pass amount to charge payload
+    const { attributesManager }     = handlerInput;
+    let attributes                  = attributesManager.getSessionAttributes( );             
+    attributes.productPrice         = productPrice;
+
+    attributesManager.setSessionAttributes( attributes );    
+
     if ( stage === 'summary' ) {
         return cartSummaryResponse;
     } else if ( stage === 'confirmation') {
@@ -621,7 +628,7 @@ exports.handler = askSDK.SkillBuilders
                         .addRequestInterceptors( PersistenceRequestInterceptor )
                         .addResponseInterceptors( PersistenceResponseInterceptor )                        
                         .withPersistenceAdapter( persistence = new s3Adapter( 
-                            { bucketName: config.GENERAL.bucketName } ) )
+                            { bucketName: config.INIT.bucketName } ) )
                         .addErrorHandlers(
                             ErrorHandler )
                         .lambda( );

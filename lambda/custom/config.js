@@ -1,5 +1,5 @@
 /**
-    To run the skill, the minimum values you need configure are: sellerId, sandboxCustomerEmailId, and bucketName
+    To run this skill, the minimum values you need configure are in INIT: bucketName, sandboxCustomerEmailId, and sellerId
 
     A detailed list of attribute descriptions can be found here:
     https://developer.amazon.com/docs/amazon-pay/amazon-pay-apis-for-alexa.html    
@@ -9,38 +9,41 @@
 
 const utilities = require( 'utilities' );
 
-// Setup & Charge Payload attributes
-const GENERAL = {
-    VERSION:                            '2.0',                                      // Required; 
-    needAmazonShippingAddress:          true,                                       // Optional; Must be boolean
-    paymentAction:                      'AuthorizeAndCapture',                      // Required; 'Authorize' or 'AuthorizeAndCapture'
-    transactionTimeout:                 0,                                          // Optional; The default and recommended value for Alexa transactions is 0
-    bucketName:                         'INSERT-YOUR-S3-BUCKET-NAME'                // Required; Used for skill state management
+// You must specify these values to run this skill
+const INIT = {
+    bucketName:                         'INSERT-YOUR-S3-BUCKET-NAME',               // Required; Used for skill state management
+    sandboxCustomerEmailId:             'INSERT-YOUR-SANDBOX-EMAIL-ADDRESS',        // Required*; If sandboxMode equals true;
+    sellerId:                           'INSERT-YOUR-AMAZON-PAY-SELLER-ID',         // Required; Amazon Pay seller ID     
 };
 
+// These attributes are used globally across US, EU, and JP
+const GLOBAL = {
+    paymentAction:                      'AuthorizeAndCapture',                      // Required; 'Authorize' or 'AuthorizeAndCapture'
+    sandboxMode:                        true,                                       // Required*; Must be true for sandbox testing; Must be false to submit to certification & production
+    version:                            '2',                                        // Required;
+    setupType:                          'SetupAmazonPayRequest',                    // Required;
+    chargeType:                         'ChargeAmazonPayRequest',                   // Required;
+    needAmazonShippingAddress:          true,                                       // Optional; Must be boolean
+    transactionTimeout:                 0,                                          // Optional; The default and recommended value for Alexa transactions is 0
+};
+
+// These attributes will change based on your region ( US, EU, or JP )
 const REGIONAL = {
     'en-US': {
-        sellerId:                       'INSERT-YOUR-AMAZON-PAY-SELLER-ID',         // Required; Amazon Pay seller ID 
-        checkoutLanguage:               'en_US',                                    // Optional; US must be en_US
         countryOfEstablishment:         'US',                                       // Required;
-        ledgerCurrency:                 'USD',                                      // Required;
-        sandboxMode:                    true,                                       // Optional; Must be false for certification & production; Must be true for sandbox testing
-        sandboxCustomerEmailId:         'INSERT-YOUR-SANDBOX-EMAIL-ADDRESS',        // Optional; Required if sandboxMode equals true; Must setup Amazon Pay test account first
-        sellerAuthorizationNote:        utilities.getSimulationString( '' ),        // Optional; Max 255 chars
-        softDescriptor:                 'No Nicks',                                 // Optional; Max 16 chars; This value is visible on customers credit card statements
-        amount:                         '0.01',                                     // Required; Max $150,000.00 USD; Intentionally set to $.01 in the demo for testing purposes.
         currencyCode:                   'USD',                                      // Required;
-
-        // SELLER ORDER ATTRIBUTES
+        ledgerCurrency:                 'USD',                                      // Required;
+        checkoutLanguage:               'en_US',                                    // Optional; US must be en_US
         customInformation:              '',                                         // Optional; Max 1024 chars
+        sellerAuthorizationNote:        utilities.getSimulationString( '' ),        // Optional; Max 255 chars; In sandbox mode you can pass simulation strings. See utilities.js
         sellerNote:                     'Thanks for shaving with No Nicks',         // Optional; Max 1024 chars, visible on confirmation mails to buyers
         sellerStoreName:                'No Nicks',                                 // Optional; Documentation calls this out as storeName not sellerStoreName
+        softDescriptor:                 'No Nicks',                                 // Optional; Max 16 chars; This value is visible on customers credit card statements
     }
 };
 
 /** 
-    The following strings DO NOT interact with Amazon Pay
-    They are here to augment the skill
+    The following strings DO NOT interact with Amazon Pay, they are here to augment the skill
 
     Order Summary, Order Confirmation, Cancel and Refund Custom Intents are required for certification:
     https://developer.amazon.com/docs/amazon-pay/certify-skill-with-amazon-pay.html
@@ -110,7 +113,6 @@ const REGIONAL = {
     The following strings are used to output errors to test the skill
 **/
 
-
 // ERROR RESPONSE STRINGS
     const scope                            = 'payments:autopay_consent';    // Required; Used request permissions for Amazon Pay
     const enablePermission                 = 'To make purchases in this skill, you need to enable Amazon Pay and turn on voice purchasing. To help, I sent a card to your Alexa app.';
@@ -126,8 +128,10 @@ const REGIONAL = {
 
 
 module.exports = {
-    'GENERAL': GENERAL,
-    'REGIONAL': REGIONAL,
+    // PAYLOAD ATTRIBUTES
+    'INIT':                             INIT,
+    'GLOBAL':                           GLOBAL,
+    'REGIONAL':                         REGIONAL,
 
     // INTENT RESPONSE STRINGS
     'launchRequestWelcomeTitle':        launchRequestWelcomeTitle,
