@@ -523,7 +523,7 @@ function amazonPayCharge ( handlerInput ) {
     const sellerOrderId             = utilities.generateRandomString( 6 );
     const locale                    = handlerInput.requestEnvelope.request.locale;
     const token                     = utilities.generateRandomString( 12 );    
-    const amount                    = config.GLOBAL.amount;
+    const amount                    = attributes.productPrice;
     
     // Set the Charge payload and send the request directive
     const chargePayload             = payloadBuilder.chargePayload(billingAgreementId, authorizationReferenceId, sellerOrderId, amount, locale);
@@ -580,6 +580,13 @@ function generateResponse ( stage, template, productType, shippingAddress ) {
     cartSummaryResponse      += cartSummarySubscription + config.cartSummaryCheckout;
 
     confirmationCardResponse = confirmationCardResponse.replace( '{productType}' , confirmationItem ).replace( '{productPrice}' , productPrice );
+
+    // Save productPrice attributes to pass to charge payload
+    const { attributesManager }     = handlerInput;
+    let attributes                  = attributesManager.getSessionAttributes( );
+
+    attributes.productPrice         = productPrice;
+    attributesManager.setSessionAttributes( attributes );       
 
     if ( stage === 'summary' ) {
         return cartSummaryResponse;
