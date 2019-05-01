@@ -1,84 +1,76 @@
-const utilities = require( 'utilities' );
-let config      = require( 'config' );
+const utilities    = require( 'utilities' );
+const config       = require( 'config' );
+const initConfig   = config.INIT;
+const globalConfig = config.GLOBAL;    
 
-const setupPayloadVersioning = {
-    type: 'SetupAmazonPayRequest',
-    version: '2'
-};
+function setupPayload( language ) {
+    const regionalConfig = config.REGIONAL[ language ];
 
-const processPayloadVersioning = {
-    type: 'ChargeAmazonPayRequest',
-    version: '2'
-};
-
-var setupPayload = function( language ) {
-    console.log( language );
-    const regionalConfig    = config.REGIONAL[ language ];
-    const generalConfig     = config.GENERAL;
-    var payload = {
-        '@type': setupPayloadVersioning.type,
-        '@version': setupPayloadVersioning.version,
-        'sellerId': regionalConfig.sellerId,
-        'countryOfEstablishment': regionalConfig.countryOfEstablishment,
-        'ledgerCurrency': regionalConfig.ledgerCurrency,
-        'checkoutLanguage': language,
-        'sandboxCustomerEmailId': regionalConfig.sandboxCustomerEmailId,
-        'sandboxMode': regionalConfig.sandboxMode,
-        'needAmazonShippingAddress': generalConfig.needAmazonShippingAddress,
+    let payload = {
+        '@type':                                                globalConfig.setupType,
+        '@version':                                             globalConfig.version,
+        'sellerId':                                             initConfig.sellerId,
+        'countryOfEstablishment':                               regionalConfig.countryOfEstablishment,
+        'ledgerCurrency':                                       regionalConfig.ledgerCurrency,
+        'checkoutLanguage':                                     language,
+        'sandboxCustomerEmailId':                               initConfig.sandboxCustomerEmailId,
+        'sandboxMode':                                          globalConfig.sandboxMode,
+        'needAmazonShippingAddress':                            globalConfig.needAmazonShippingAddress,
         'billingAgreementAttributes': {
-            '@type': 'BillingAgreementAttributes',
-            '@version': '2',
-            'sellerNote': regionalConfig.sellerNote,
-            'platformId': generalConfig.platformId,
+            '@type':                                            'BillingAgreementAttributes',
+            '@version':                                         globalConfig.version,
+            'sellerNote':                                       regionalConfig.sellerNote,
+            'platformId':                                       globalConfig.platformId,
             'sellerBillingAgreementAttributes': {
-                '@type': 'SellerBillingAgreementAttributes',
-                '@version': '2',
-                //'sellerBillingAgreementId': SOME RANDOM STRING,
-                'storeName': generalConfig.sellerStoreName,
-                'customInformation': regionalConfig.customInformation
+                '@type':                                        'SellerBillingAgreementAttributes',
+                '@version':                                     globalConfig.version,
+                'sellerBillingAgreementId':                     utilities.generateRandomString( 6 ),
+                'storeName':                                    globalConfig.sellerStoreName,
+                'customInformation':                            regionalConfig.customInformation
             }
         }
     };
 
     return payload;
-};
-var chargePayload = function( billingAgreementId, authorizationReferenceId, sellerOrderId, amount, language ) {
+}
 
-    const regionalConfig    = config.REGIONAL[ language ];
-    const generalConfig     = config.GENERAL;
-    var payload = {
-        '@type': processPayloadVersioning.type,
-        '@version': processPayloadVersioning.version,
-        'sellerId': regionalConfig.sellerId,
-        'billingAgreementId': billingAgreementId,
-        'paymentAction': generalConfig.paymentAction,
+function chargePayload ( billingAgreementId, authorizationReferenceId, sellerOrderId, amount, language ) {
+    const regionalConfig = config.REGIONAL[ language ];
+
+    let payload = {
+        '@type':                                                globalConfig.chargeType,
+        '@version':                                             globalConfig.version,
+        'sellerId':                                             initConfig.sellerId,
+        'billingAgreementId':                                   billingAgreementId,
+        'paymentAction':                                        globalConfig.paymentAction,
         'authorizeAttributes': {
             '@type': 'AuthorizeAttributes',
-            '@version': '2',
-            'authorizationReferenceId': authorizationReferenceId,
+            '@version':                                         globalConfig.version,
+            'authorizationReferenceId':                         authorizationReferenceId,
             'authorizationAmount': {
-                '@type': 'Price',
-                '@version': '2',
-                'amount': amount.toString( ),
-                'currencyCode': regionalConfig.ledgerCurrency
+                '@type':                                        'Price',
+                '@version':                                     globalConfig.version,
+                'amount':                                       amount,
+                'currencyCode':                                 regionalConfig.ledgerCurrency
             },
-            'transactionTimeout': generalConfig.transactionTimeout,
-            'sellerAuthorizationNote': regionalConfig.sellerAuthorizationNote, // util.getSimulationString('AmazonRejected'), 
-            'softDescriptor': regionalConfig.softDescriptor
+            'transactionTimeout':                               globalConfig.transactionTimeout,
+            'sellerAuthorizationNote':                          regionalConfig.sellerAuthorizationNote,
+            'softDescriptor':                                   regionalConfig.softDescriptor
         },
         'sellerOrderAttributes': {
-            '@type': 'SellerOrderAttributes',
-            '@version': '2',
-            //           'sellerOrderId': sellerOrderId,
-            'storeName': regionalConfig.sellerStoreName,
-            'customInformation': regionalConfig.customInformation,
-            'sellerNote': regionalConfig.sellerNote
+            '@type':                                            'SellerOrderAttributes',
+            '@version':                                         globalConfig.version,
+            'sellerOrderId':                                    sellerOrderId,
+            'storeName':                                        regionalConfig.sellerStoreName,
+            'customInformation':                                regionalConfig.customInformation,
+            'sellerNote':                                       regionalConfig.sellerNote
         }
     };
+
     return payload;
-};
+}
 
 module.exports = {
-    'setupPayload':     setupPayload,
-    'chargePayload':    chargePayload
+    'setupPayload':  setupPayload,
+    'chargePayload': chargePayload
 };

@@ -523,7 +523,7 @@ function amazonPayCharge ( handlerInput ) {
     const sellerOrderId             = utilities.generateRandomString( 6 );
     const locale                    = handlerInput.requestEnvelope.request.locale;
     const token                     = utilities.generateRandomString( 12 );    
-    const amount                    = config.REGIONAL[locale].amount;
+    const amount                    = config.GLOBAL.amount;
     
     // Set the Charge payload and send the request directive
     const chargePayload             = payloadBuilder.chargePayload(billingAgreementId, authorizationReferenceId, sellerOrderId, amount, locale);
@@ -621,7 +621,7 @@ exports.handler = askSDK.SkillBuilders
                         .addRequestInterceptors( PersistenceRequestInterceptor )
                         .addResponseInterceptors( PersistenceResponseInterceptor )                        
                         .withPersistenceAdapter( persistence = new s3Adapter( 
-                            { bucketName: config.GENERAL.bucketName } ) )
+                            { bucketName: config.INIT.bucketName } ) )
                         .addErrorHandlers(
                             ErrorHandler )
                         .lambda( );
