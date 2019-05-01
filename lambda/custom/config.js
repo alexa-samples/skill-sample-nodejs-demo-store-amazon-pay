@@ -11,9 +11,9 @@ const utilities = require( 'utilities' );
 
 // You must specify these values to run this skill
 const INIT = {
-    bucketName:                         'no-nicks',                                 // Required; Used for skill state management
-    sandboxCustomerEmailId:             'tcordov+pay.sandbox.buyer.2@amazon.com',   // Required*; If sandboxMode equals true;
-    sellerId:                           'AVX6ERM5QT1ZB',                            // Required; Amazon Pay seller ID     
+    bucketName:                         'INSERT-YOUR-S3-BUCKET-NAME',               // Required; Used for skill state management
+    sandboxCustomerEmailId:             'INSERT-YOUR-SANDBOX-EMAIL-ADDRESS',        // Required*; If sandboxMode equals true;
+    sellerId:                           'INSERT-YOUR-AMAZON-PAY-SELLER-ID',         // Required; Amazon Pay seller ID     
 };
 
 // These attributes are used globally across US, EU, and JP

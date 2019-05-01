@@ -1,34 +1,10 @@
 {
   "deploy_settings": {
     "default": {
-      "skill_id": "amzn1.ask.skill.7b00fd1c-b906-4dc6-8d9c-c4cbe1ef69fc",
+      "skill_id": "",
       "was_cloned": false,
       "merge": {
         "manifest": {}
-      },
-      "resources": {
-        "manifest": {
-          "eTag": "3517b94184e7b2fce7b7f48ab23b2b92"
-        },
-        "interactionModel": {
-          "en-US": {
-            "eTag": "18f1e29eab906e15a7e9db8f36fb48c4"
-          }
-        },
-        "lambda": [
-          {
-            "alexaUsage": [
-              "custom/default"
-            ],
-            "arn": "arn:aws:lambda:us-east-1:859669077786:function:no-nicks",
-            "awsRegion": "us-east-1",
-            "codeUri": "lambda/custom",
-            "functionName": "no-nicks",
-            "handler": "index.handler",
-            "revisionId": "ca9e8e48-f039-4d95-b12b-582f25abe71d",
-            "runtime": "nodejs8.10"
-          }
-        ]
       }
     }
   }
