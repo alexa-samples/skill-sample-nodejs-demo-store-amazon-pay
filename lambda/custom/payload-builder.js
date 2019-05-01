@@ -50,7 +50,7 @@ function chargePayload ( billingAgreementId, authorizationReferenceId, sellerOrd
             'authorizationAmount': {
                 '@type':                                        'Price',
                 '@version':                                     globalConfig.version,
-                'amount':                                       amount,
+                'amount':                                       amount.toString(),
                 'currencyCode':                                 regionalConfig.ledgerCurrency
             },
             'transactionTimeout':                               globalConfig.transactionTimeout,

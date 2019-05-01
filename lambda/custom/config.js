@@ -18,7 +18,6 @@ const INIT = {
 
 // These attributes are used globally across US, EU, and JP
 const GLOBAL = {
-    amount:                             '0.01',                                     // Required; Max $150,000.00 USD; Intentionally set to $.01 in the demo for testing purposes
     paymentAction:                      'AuthorizeAndCapture',                      // Required; 'Authorize' or 'AuthorizeAndCapture'
     sandboxMode:                        true,                                       // Required*; Must be true for sandbox testing; Must be false to submit to certification & production
     version:                            '2',                                        // Required;

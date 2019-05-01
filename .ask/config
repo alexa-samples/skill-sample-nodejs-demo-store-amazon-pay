@@ -25,7 +25,7 @@
             "codeUri": "lambda/custom",
             "functionName": "no-nicks",
             "handler": "index.handler",
-            "revisionId": "ef2f82bd-b5c9-4052-9be9-cfed3fe6eddb",
+            "revisionId": "ca9e8e48-f039-4d95-b12b-582f25abe71d",
             "runtime": "nodejs8.10"
           }
         ]
