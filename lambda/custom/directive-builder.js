@@ -1,17 +1,16 @@
+/**
+    Builds and returns directives that contain either a Setup or Charge payload
+    https://developer.amazon.com/docs/amazon-pay/integrate-skill-with-amazon-pay-v2.html#workflow1
+**/
+
 'use strict';
 
-const directiveType     = 'Connections.SendRequest';
-const setupDirective    = {
-    name: 'Setup',
-};
-
-const chargeDirective   = {
-    name: 'Charge',
-};
+const config            = require( 'config' );
 
 function createDirective( name, payload, token ) {
-    var directive       = {};
-    directive.type      = directiveType;
+    let directive       = {};
+    
+    directive.type      = config.GLOBAL.directiveType;
     directive.name      = name;
     directive.payload   = payload;
     directive.token     = token;
@@ -19,17 +18,6 @@ function createDirective( name, payload, token ) {
     return directive;
 }
 
-function createSetupDirective( payload, token ) {
-    return createDirective( setupDirective.name, payload, token );
-}
-
-function createChargeDirective( payload, token ) {
-    return createDirective( chargeDirective.name, payload, token );
-}
-
 module.exports = {
-    'createSetupDirective':     createSetupDirective,
-    'createChargeDirective':    createChargeDirective,
-    'setupDirectiveName':       setupDirective.name,
-    'chargeDirectiveName':      chargeDirective.name,
+    'createDirective':     createDirective
 };

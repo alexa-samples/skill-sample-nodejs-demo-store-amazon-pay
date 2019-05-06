@@ -21,8 +21,11 @@ const GLOBAL = {
     paymentAction:                      'AuthorizeAndCapture',                      // Required; 'Authorize' or 'AuthorizeAndCapture'
     sandboxMode:                        true,                                       // Required*; Must be true for sandbox testing; Must be false to submit to certification & production
     version:                            '2',                                        // Required;
-    setupType:                          'SetupAmazonPayRequest',                    // Required;
-    chargeType:                         'ChargeAmazonPayRequest',                   // Required;
+    payloadSetupType:                   'SetupAmazonPayRequest',                    // Required;
+    payloadChargeType:                  'ChargeAmazonPayRequest',                   // Required;
+    directiveType:                      'Connections.SendRequest',                  // Required;
+    directiveSetupName:                 'Setup',                                    // Required;
+    directiveChargeName:                'Charge',                                    // Required;
     needAmazonShippingAddress:          true,                                       // Optional; Must be boolean
     transactionTimeout:                 0,                                          // Optional; The default and recommended value for Alexa transactions is 0
 };

@@ -1,3 +1,11 @@
+/**
+    Builds and returns payloads for both Setup and Charge API's
+    https://developer.amazon.com/docs/amazon-pay/integrate-skill-with-amazon-pay-v2.html#workflow1
+
+    Parameter types and descriptions can be found here:
+    https://developer.amazon.com/docs/amazon-pay/amazon-pay-apis-for-alexa.html 
+**/
+
 const utilities    = require( 'utilities' );
 const config       = require( 'config' );
 const initConfig   = config.INIT;
@@ -7,7 +15,7 @@ function setupPayload( language ) {
     const regionalConfig = config.REGIONAL[ language ];
 
     let payload = {
-        '@type':                                                globalConfig.setupType,
+        '@type':                                                globalConfig.payloadSetupType,
         '@version':                                             globalConfig.version,
         'sellerId':                                             initConfig.sellerId,
         'countryOfEstablishment':                               regionalConfig.countryOfEstablishment,
@@ -38,7 +46,7 @@ function chargePayload ( billingAgreementId, authorizationReferenceId, sellerOrd
     const regionalConfig = config.REGIONAL[ language ];
 
     let payload = {
-        '@type':                                                globalConfig.chargeType,
+        '@type':                                                globalConfig.payloadChargeType,
         '@version':                                             globalConfig.version,
         'sellerId':                                             initConfig.sellerId,
         'billingAgreementId':                                   billingAgreementId,

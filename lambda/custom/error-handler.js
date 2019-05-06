@@ -1,12 +1,11 @@
-'use strict';
-
-const config = require( 'config' );
-
 /**
 	A detailed list of all payment declines and processing errors can be found here:
 	https://developer.amazon.com/docs/amazon-pay/payment-declines-and-processing-errors.html
 **/
 
+'use strict';
+
+const config = require( 'config' );
 
 // These are errors that will not be handled by Amazon Pay; Merchant must handle
 function handleErrors( handlerInput ) {

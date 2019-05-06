@@ -1,5 +1,5 @@
 /**
-    This skill is built for Nodejs using Alexa ASK V2.0.3 
+    This skill is built for Nodejs using Alexa ASK V2.4.0 
     Download the SDK here: https://github.com/alexa/alexa-skills-kit-sdk-for-nodejs
 **/
 
@@ -207,7 +207,7 @@ const NoIntentHandler = {
 const SetupConnectionsResponseHandler = {
     canHandle( handlerInput ) {
         return handlerInput.requestEnvelope.request.type  === 'Connections.Response' &&
-                handlerInput.requestEnvelope.request.name === directiveBuilder.setupDirectiveName;
+                handlerInput.requestEnvelope.request.name === config.GLOBAL.directiveSetupName;
     },
     handle( handlerInput ) {
         const connectionResponsePayload     = handlerInput.requestEnvelope.request.payload;
@@ -253,7 +253,7 @@ const SetupConnectionsResponseHandler = {
 const ChargeConnectionsResponseHandler = {
     canHandle( handlerInput ) {
         return handlerInput.requestEnvelope.request.type    === 'Connections.Response' &&
-                handlerInput.requestEnvelope.request.name   === directiveBuilder.chargeDirectiveName;
+                handlerInput.requestEnvelope.request.name   === config.GLOBAL.directiveChargeName;
     },
     handle( handlerInput ) {
         const connectionResponsePayload     = handlerInput.requestEnvelope.request.payload;
@@ -491,7 +491,7 @@ function amazonPaySetup ( handlerInput, productType ) {
 
     // If you do not have a billing agreement, set the Setup payload and send the request directive
     const setupPayload              = payloadBuilder.setupPayload( handlerInput.requestEnvelope.request.locale );
-    const setupRequestDirective     = directiveBuilder.createSetupDirective( setupPayload, token );
+    const setupRequestDirective     = directiveBuilder.createDirective( config.GLOBAL.directiveSetupName, setupPayload, token );
 
     
     return handlerInput.responseBuilder
@@ -527,7 +527,7 @@ function amazonPayCharge ( handlerInput ) {
     
     // Set the Charge payload and send the request directive
     const chargePayload             = payloadBuilder.chargePayload(billingAgreementId, authorizationReferenceId, sellerOrderId, amount, locale);
-    const chargeRequestDirective    = directiveBuilder.createChargeDirective(chargePayload, token);
+    const chargeRequestDirective    = directiveBuilder.createDirective( config.GLOBAL.directiveChargeName, chargePayload, token );
 
     return handlerInput.responseBuilder
                         .addDirective( chargeRequestDirective )

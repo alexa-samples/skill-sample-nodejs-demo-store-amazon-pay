@@ -1,10 +1,10 @@
 'use strict';
 
 /**
+	Used to simulate payment decline scenarios in sandbox mode
+
     A detailed list simulation strings to use in sandboxMode can be found here:
     https://pay.amazon.com/us/developer/documentation/lpwa/201956480#201956480
-
-    Used for testing simulation strings in sandbox mode
 **/
 
 function getSimulationString( type ) {
