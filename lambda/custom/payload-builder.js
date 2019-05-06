@@ -11,7 +11,7 @@ const config       = require( 'config' );
 const initConfig   = config.INIT;
 const globalConfig = config.GLOBAL;    
 
-function setupPayload( language ) {
+function createSetupPayload( language ) {
     const regionalConfig = config.REGIONAL[ language ];
 
     let payload = {
@@ -42,7 +42,7 @@ function setupPayload( language ) {
     return payload;
 }
 
-function chargePayload ( billingAgreementId, authorizationReferenceId, sellerOrderId, amount, language ) {
+function createChargePayload ( billingAgreementId, authorizationReferenceId, sellerOrderId, amount, language ) {
     const regionalConfig = config.REGIONAL[ language ];
 
     let payload = {
@@ -79,6 +79,6 @@ function chargePayload ( billingAgreementId, authorizationReferenceId, sellerOrd
 }
 
 module.exports = {
-    'setupPayload':  setupPayload,
-    'chargePayload': chargePayload
+    'createSetupPayload':  createSetupPayload,
+    'createChargePayload': createChargePayload
 };
