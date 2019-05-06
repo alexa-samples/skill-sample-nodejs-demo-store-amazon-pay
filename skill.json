@@ -15,19 +15,6 @@
         "name": "payments:autopay_consent"
       }
     ],
-    "privacyAndCompliance": {
-      "locales": {
-        "en-US": {
-          "privacyPolicyUrl": "https://example.com",
-          "termsOfUseUrl": "https://example.com"
-        }
-      },
-      "allowsPurchases": true,
-      "usesPersonalInfo": true,
-      "isChildDirected": false,
-      "isExportCompliant": true,
-      "containsAds": false
-    },
     "publishingInformation": {
       "locales": {
         "en-US": {
