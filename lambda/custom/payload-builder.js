@@ -1,13 +1,21 @@
+/**
+    Builds and returns payloads for both Setup and Charge API's
+    https://developer.amazon.com/docs/amazon-pay/integrate-skill-with-amazon-pay-v2.html#workflow1
+
+    Parameter types and descriptions can be found here:
+    https://developer.amazon.com/docs/amazon-pay/amazon-pay-apis-for-alexa.html 
+**/
+
 const utilities    = require( 'utilities' );
 const config       = require( 'config' );
 const initConfig   = config.INIT;
 const globalConfig = config.GLOBAL;    
 
-function setupPayload( language ) {
+function createSetupPayload( language ) {
     const regionalConfig = config.REGIONAL[ language ];
 
     let payload = {
-        '@type':                                                globalConfig.setupType,
+        '@type':                                                globalConfig.payloadSetupType,
         '@version':                                             globalConfig.version,
         'sellerId':                                             initConfig.sellerId,
         'countryOfEstablishment':                               regionalConfig.countryOfEstablishment,
@@ -34,11 +42,11 @@ function setupPayload( language ) {
     return payload;
 }
 
-function chargePayload ( billingAgreementId, authorizationReferenceId, sellerOrderId, amount, language ) {
+function createChargePayload ( billingAgreementId, authorizationReferenceId, sellerOrderId, amount, language ) {
     const regionalConfig = config.REGIONAL[ language ];
 
     let payload = {
-        '@type':                                                globalConfig.chargeType,
+        '@type':                                                globalConfig.payloadChargeType,
         '@version':                                             globalConfig.version,
         'sellerId':                                             initConfig.sellerId,
         'billingAgreementId':                                   billingAgreementId,
@@ -71,6 +79,6 @@ function chargePayload ( billingAgreementId, authorizationReferenceId, sellerOrd
 }
 
 module.exports = {
-    'setupPayload':  setupPayload,
-    'chargePayload': chargePayload
+    'createSetupPayload':  createSetupPayload,
+    'createChargePayload': createChargePayload
 };
