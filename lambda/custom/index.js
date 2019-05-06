@@ -490,7 +490,7 @@ function amazonPaySetup ( handlerInput, productType ) {
     const token                     = utilities.generateRandomString( 12 );
 
     // If you do not have a billing agreement, set the Setup payload and send the request directive
-    const setupPayload              = payloadBuilder.setupPayload( handlerInput.requestEnvelope.request.locale );
+    const setupPayload              = payloadBuilder.createSetupPayload( handlerInput.requestEnvelope.request.locale );
     const setupRequestDirective     = directiveBuilder.createDirective( config.GLOBAL.directiveSetupName, setupPayload, token );
 
     
@@ -526,7 +526,7 @@ function amazonPayCharge ( handlerInput ) {
     const amount                    = attributes.productPrice;
     
     // Set the Charge payload and send the request directive
-    const chargePayload             = payloadBuilder.chargePayload(billingAgreementId, authorizationReferenceId, sellerOrderId, amount, locale);
+    const chargePayload             = payloadBuilder.createChargePayload(billingAgreementId, authorizationReferenceId, sellerOrderId, amount, locale);
     const chargeRequestDirective    = directiveBuilder.createDirective( config.GLOBAL.directiveChargeName, chargePayload, token );
 
     return handlerInput.responseBuilder

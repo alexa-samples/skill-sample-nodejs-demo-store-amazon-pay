@@ -5,19 +5,19 @@
 
 'use strict';
 
-const config            = require( 'config' );
+const config = require( 'config' );
 
 function createDirective( name, payload, token ) {
-    let directive       = {};
-    
-    directive.type      = config.GLOBAL.directiveType;
-    directive.name      = name;
-    directive.payload   = payload;
-    directive.token     = token;
+    const directive = {
+        type:       config.GLOBAL.directiveType,
+        name:       name,
+        payload:    payload,
+        token:      token      
+    };
 
     return directive;
 }
 
 module.exports = {
-    'createDirective':     createDirective
+    'createDirective': createDirective
 };
