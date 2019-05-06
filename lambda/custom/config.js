@@ -25,7 +25,7 @@ const GLOBAL = {
     payloadChargeType:                  'ChargeAmazonPayRequest',                   // Required;
     directiveType:                      'Connections.SendRequest',                  // Required;
     directiveSetupName:                 'Setup',                                    // Required;
-    directiveChargeName:                'Charge',                                    // Required;
+    directiveChargeName:                'Charge',                                   // Required;
     needAmazonShippingAddress:          true,                                       // Optional; Must be boolean
     transactionTimeout:                 0,                                          // Optional; The default and recommended value for Alexa transactions is 0
 };
