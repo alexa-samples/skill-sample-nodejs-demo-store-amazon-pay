@@ -264,11 +264,11 @@ const ChargeConnectionsResponseHandler = {
             return error.handleErrors( handlerInput );
         } 
 
-        const authorizationStatusState = connectionResponsePayload.authorizationDetails.state;
-        
+        const authorizationStatusState = connectionResponsePayload.authorizationDetails.authorizationStatus.state;
+
         // Authorization is declined, tell the customer their order was not placed
         if( authorizationStatusState === 'Declined' ) {
-            const authorizationStatusReasonCode = connectionResponsePayload.authorizationDetails.reasonCode;
+            const authorizationStatusReasonCode = connectionResponsePayload.authorizationDetails.authorizationStatus.reasonCode;
 
             return error.handleAuthorizationDeclines( authorizationStatusReasonCode, handlerInput );
 
