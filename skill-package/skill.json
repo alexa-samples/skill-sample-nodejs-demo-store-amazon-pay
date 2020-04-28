@@ -2,10 +2,6 @@
   "manifest": {
     "apis": {
       "custom": {
-        "endpoint": {
-          "uri": "no-nicks",
-          "sourceDir": "lambda/custom"
-        },
         "interfaces": []
       }
     },
